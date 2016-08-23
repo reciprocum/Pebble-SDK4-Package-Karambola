@@ -1,0 +1,27 @@
+{
+    "author": "reciprocum@gmail.com",
+    "dependencies": {},
+    "files": [
+        "dist.zip"
+    ],
+    "keywords": [],
+    "name": "karambola",
+    "pebble": {
+        "messageKeys": [],
+        "projectType": "package",
+        "resources": {
+            "media": []
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "basalt",
+            "chalk",
+            "diorite"
+        ],
+        "uuid": "06fc37b8-c08b-43c5-9e17-6996fd43df1d",
+        "watchapp": {
+            "watchface": false
+        }
+    },
+    "version": "1.0.0"
+}

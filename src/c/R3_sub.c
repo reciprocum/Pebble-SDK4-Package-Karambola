@@ -1,0 +1,26 @@
+/*
+   Package: R3
+   File   : R3_sub.c
+   Author : Afonso Santos, Portugal
+
+   Last revision: 12h05 August 20 2016
+*/
+
+#include "R3.h"
+
+
+// c := a - b
+
+R3*
+R3_sub
+( R3       *c
+, const R3 *a
+, const R3 *b
+)
+{
+  c->x = a->x - b->x ;
+  c->y = a->y - b->y ;
+  c->z = a->z - b->z ;
+
+  return c ;
+}
