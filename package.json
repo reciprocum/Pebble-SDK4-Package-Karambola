@@ -1,5 +1,5 @@
 {
-    "author": "reciprocum@gmail.com",
+    "author": "Karambola",
     "dependencies": {},
     "files": [
         "dist.zip"
@@ -18,7 +18,6 @@
             "chalk",
             "diorite"
         ],
-        "uuid": "06fc37b8-c08b-43c5-9e17-6996fd43df1d",
         "watchapp": {
             "watchface": false
         }

@@ -3,17 +3,19 @@
    File   : Sampler_plot.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 11h50 August 23 2016
+   Last revision: 11h50 August 28 2016
 */
 
 #include "Sampler.h"
+#include "Config.h"
 
 
 void
 Sampler_plot
-( Sampler        *this
-, Layer          *me
-, GContext       *gCtx
+( GContext       *gCtx
+, Sampler        *this
+, const int       pW                // plot area width (pixels)
+, const int       pH                // plot area heigth (pixels)
 , const uint16_t  pHeadLag
 , const uint16_t  pShowMax          // Maximun number of samples to be plotted at once.
 , const uint8_t   pShowMin          // Minimum number of samples to be plotted at once.
@@ -24,12 +26,6 @@ Sampler_plot
   if (this == NULL)
     return ;
   
-  const GRect layerBounds = layer_get_bounds( me ) ;
-  const uint8_t screen_w = layerBounds.size.w ;
-  const uint8_t screen_h = layerBounds.size.h ;
-
-	graphics_context_set_stroke_color( gCtx, GColorWhite ) ;
-
   // MIN( pHeadLag, this->samplesNum - pShowMin )
   const uint16_t headLag   = pHeadLag < this->samplesNum - pShowMin ? pHeadLag : this->samplesNum - pShowMin ;
 
@@ -43,9 +39,9 @@ Sampler_plot
   // Normalized world coordinates are a square with both x & y spanning from -1.0 to +1.0.
   const float    wPlotStep = showNum < 3 ? 2.0 : 2.0 / (showNum - 1) ;
 
-  const float   screen_Kx = (screen_w - 1) / 2.0 ;
-  const float   screen_Ky =-(screen_h - 1) / 2.0 ;
-  const float   screen_Cy = (screen_h - 1) ;
+  const float   screen_Kx =+0.5f * (pW - 1) ;
+  const float   screen_Ky =-0.5f * (pH - 1) ;
+  const float   screen_Cy = (pH - 1) ;
 
   int16_t       plotter ;                              // Sample coords.
   GPoint        sPlotter, sSample ;                    // Screen coords.
@@ -55,7 +51,7 @@ Sampler_plot
   int16_t sampleMin = INT16_MAX ;
   int16_t sampleIdx = this->samples_headIdx - headLag ;
 
-  for ( uint8_t iSample = 0  ;  iSample < showNum  ;  ++iSample )
+  for (int16_t iSample = 0  ;  iSample < showNum  ;  ++iSample)
   {
     const int16_t sample = this->samples[sampleIdx] ;
 
@@ -93,7 +89,7 @@ Sampler_plot
   // Second iteration of the samples to plot/draw them.
   sampleIdx = this->samples_headIdx - headLag ;
 
-  for ( uint8_t iSample = 0  ;  iSample < showNum  ;  ++iSample )
+  for (int16_t iSample = 0  ;  iSample < showNum  ;  ++iSample)
   {
     const float   wPlotter_x = 1.0 - iSample * wPlotStep ;
     const int16_t sample     = this->samples[sampleIdx] ;

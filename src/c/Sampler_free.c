@@ -15,10 +15,9 @@ Sampler_free
 {
   if (this != NULL)
   {
-    free( this->samples ) ;
-    this->samples = NULL ;
+    free( this->samples )  ;  this->samples = NULL ;
     this->capacity = this->samplesNum = 0 ;
-    free( this ) ; this = NULL ;
+    free( this )  ;  this = NULL ;
   }
 
   return this ;

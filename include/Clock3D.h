@@ -3,12 +3,12 @@
    File   : Clock3D.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 18h40 August 22 2016
+   Last revision: 18h40 August 29 2016
 */
 
 #pragma once
 
-#include "Cube.h"
+#include "CubeR3.h"
 #include "Digit3D.h"
 #include "RadialDial3D.h"
 
@@ -30,47 +30,79 @@
 #define  RADIAL_OUTER_RADIUS  (0.97f * CUBE_HALF)
 
 
-extern Digit2D_Type         clock_displayType ;
+typedef struct
+{
+  MeshR3       *cube ;
 
-// Need to expose digit meshes because of access to blinker.
-extern Digit3D    *clock_days_leftDigitA ;
-extern Digit3D    *clock_days_leftDigitB ;
-extern Digit3D    *clock_days_rightDigitA ;
-extern Digit3D    *clock_days_rightDigitB ;
+  Digit2D_Type  digitType ;
 
-extern Digit3D    *clock_hours_leftDigitA ;
-extern Digit3D    *clock_hours_leftDigitB ;
-extern Digit3D    *clock_hours_rightDigitA ;
-extern Digit3D    *clock_hours_rightDigitB ;
+  int8_t        days ;
+  Digit3D      *days_leftDigitA ;
+  Digit3D      *days_leftDigitB ;
+  Digit3D      *days_rightDigitA ;
+  Digit3D      *days_rightDigitB ;
 
-extern Digit3D    *clock_minutes_leftDigitA ;
-extern Digit3D    *clock_minutes_leftDigitB ;
-extern Digit3D    *clock_minutes_rightDigitA ;
-extern Digit3D    *clock_minutes_rightDigitB ;
+  int8_t        hours ;
+  int8_t        hours_digitsValue ;
+  int8_t        hours_radialValue ;
+  Digit3D      *hours_leftDigitA ;
+  Digit3D      *hours_leftDigitB ;
+  Digit3D      *hours_rightDigitA ;
+  Digit3D      *hours_rightDigitB ;
+  RadialDial3D *hours_radial ;
+  unsigned int  hours_radial_valueOnAnimStop ;
 
-extern Digit3D    *clock_seconds_leftDigit ;
-extern Digit3D    *clock_seconds_rightDigit ;
+  int8_t        minutes ;
+  Digit3D      *minutes_leftDigitA ;
+  Digit3D      *minutes_leftDigitB ;
+  Digit3D      *minutes_rightDigitA ;
+  Digit3D      *minutes_rightDigitB ;
+  RadialDial3D *minutes_radial ;
+  unsigned int  minutes_radial_valueOnAnimStop ;
 
-extern Digit3D    *clock_second100ths_leftDigit ;
-extern Digit3D    *clock_second100ths_rightDigit ;
+  int8_t        seconds ;
+  Digit3D      *seconds_leftDigit ;
+  Digit3D      *seconds_rightDigit ;
+  RadialDial3D *seconds_radial ;
+
+  int8_t        second100ths ;
+  Digit3D      *second100ths_leftDigit ;
+  Digit3D      *second100ths_rightDigit ;
+
+#ifdef CLOCK3D_SECOND100THS_RADIAL
+  RadialDial3D *second100ths_radial ;
+#endif
+
+  // Animation related.
+  int    days_leftDigit_animStep ;
+  int    days_rightDigit_animStep ;
+  int    hours_leftDigit_animStep ;
+  int    hours_rightDigit_animStep ;
+  int    hours_radial_animStep ;
+  int    minutes_leftDigit_animStep ;
+  int    minutes_rightDigit_animStep ;
+  int    minutes_radial_animStep ;
+} Clock3D ;
 
 
-void Clock3D_initialize         ( ) ;
-bool Clock3D_isAnimated         ( ) ;
-void Clock3D_animateAllDigits   ( ) ;
-void Clock3D_animateAllRadials  ( ) ;
-void Clock3D_animateAll         ( ) ;
-void Clock3D_second100ths_update( ) ;
-void Clock3D_updateDDHHMMSS     ( ) ;
-void Clock3D_config             ( Digit2D_Type pDigitType ) ;
-void Clock3D_updateAnimation    ( const int pMaxAnimSteps ) ;
-void Clock3D_setDisplayType     ( Digit2D_Type pDigitType ) ;
-void Clock3D_cycleDisplayType   ( ) ;
-void Clock3D_finalize           ( ) ;
+
+void Clock3D_initialize         ( Clock3D *this ) ;
+bool Clock3D_isAnimated         ( Clock3D *this ) ;
+void Clock3D_animateAllDigits   ( Clock3D *this ) ;
+void Clock3D_animateAllRadials  ( Clock3D *this ) ;
+void Clock3D_animateAll         ( Clock3D *this ) ;
+void Clock3D_second100ths_update( Clock3D *this ) ;
+void Clock3D_updateDDHHMMSS     ( Clock3D *this ) ;
+void Clock3D_config             ( Clock3D *this, Digit2D_Type pDigitType ) ;
+void Clock3D_updateAnimation    ( Clock3D *this, const int pMaxAnimSteps ) ;
+void Clock3D_setDigitType       ( Clock3D *this, Digit2D_Type pDigitType ) ;
+void Clock3D_cycleDigitType     ( Clock3D *this ) ;
+void Clock3D_finalize           ( Clock3D *this ) ;
 
 void
 Clock3D_setTime_DDHHMMSS
-( const uint8_t  pDays
+( Clock3D       *this
+, const uint8_t  pDays
 , const uint8_t  pHours
 , const uint8_t  pMinutes
 , const uint8_t  pSeconds
@@ -78,10 +110,10 @@ Clock3D_setTime_DDHHMMSS
 
 void
 Clock3D_draw
-( GContext                      *gCtx
-//, Clock3D                     *this    // TODO
-, const Cam3D                   *cam
-, const int                      w
-, const int                      h
-, const Mesh3D_TransparencyMode  transparency
+( GContext               *gCtx
+, Clock3D                *this
+, const CamR3            *cam
+, const int               w
+, const int               h
+, const MeshTransparency  transparency
 ) ;

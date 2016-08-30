@@ -3,7 +3,7 @@
    File   : RadialDial3D_free.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 08h45 August 22 2016
+   Last revision: 18h25 August 29 2016
 */
 
 #include "RadialDial3D.h"
@@ -15,8 +15,8 @@ RadialDial3D_free
 {
   if (this != NULL)
   {
-    free( Mesh3D_free( this->mesh ) ) ;
-    this->mesh = NULL ;
+    free( MeshR3_free( this->mesh ) )  ;  this->mesh = NULL ;
+    free( this )                       ;  this = NULL ;
   }
 
   return this ;

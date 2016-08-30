@@ -3,7 +3,7 @@
    File   : RadialDial3D_config.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 13h25 August 23 2016
+   Last revision: 10h45 August 30 2016
 */
 
 #include "Matrix34.h"
@@ -12,23 +12,21 @@
 
 void
 RadialDial3D_config
-( RadialDial3D          *this            // MUST contain a pre-allocated mesh.
+( RadialDial3D          *this               // MUST already contain/point a/to pre-allocated mesh.
 , const RadialDialShape  shape
 , const float            innerRadius
 , const float            outerRadius
-, const float            rotationX
-, const float            rotationY
-, const float            rotationZ
-, const R3              *anchor3D        // Center of the radial handle
+, const R3               rotation
+, const R3               translation        // Center of the radial handle
 )
 {
   if ((this == NULL) || (this->mesh == NULL))
     return ;
 
-  Mesh3D *mesh = this->mesh ;
+  MeshR3 *mesh = this->mesh ;
 
   Matrix34 transformationMtx ;
-  Matrix34_transformation( &transformationMtx, rotationX, rotationY, rotationZ, anchor3D ) ;
+  Matrix34_transformation( &transformationMtx, rotation, translation ) ;
 
   // set & rotate the mesh normal.
   Matrix34_rotate( mesh->normal_worldCoord, &R3_versorMinusZ, &transformationMtx ) ;
@@ -51,7 +49,7 @@ RadialDial3D_config
       break ;
   }
 
-  for ( int iRadial = 0  ;  iRadial < nRadials  ;  ++iRadial )
+  for (int iRadial = 0  ;  iRadial < nRadials  ;  ++iRadial)
   {
     const int32_t  angle    = TRIG_MAX_ANGLE * iRadial / nRadials ;
     const uint16_t angleDeg = ((uint16_t)(360 * iRadial)) / nRadials ;

@@ -1,5 +1,5 @@
 /*
-   Package: R2
+   Package: R2 - float based 2D algebra.
    File   : R2_isEqual.c
    Author : Afonso Santos, Portugal
 

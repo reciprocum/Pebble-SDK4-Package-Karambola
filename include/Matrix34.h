@@ -2,7 +2,7 @@
    File  : Matrix34.h
    Author: Afonso Santos, Portugal
 
-   Last revision: 00h40 August 19 2016
+   Last revision: 10h10 August 30 2016
 */
 
 #pragma once
@@ -39,7 +39,7 @@ Matrix34_assign
 Matrix34*
 Matrix34_translation
 ( Matrix34 *M
-, const R3 *t
+, const R3  t
 ) ;
 
 
@@ -48,7 +48,7 @@ Matrix34_translation
 Matrix34*
 Matrix34_setTranslation
 ( Matrix34 *M
-, const R3 *t
+, const R3  t
 ) ;
 
 
@@ -73,11 +73,9 @@ Matrix34_compound
 
 Matrix34*
 Matrix34_transformation
-( Matrix34     *T
-, const float   rotationX
-, const float   rotationY
-, const float   rotationZ
-, const R3     *translation
+( Matrix34  *T
+, const R3   rotation
+, const R3   translation
 ) ;
 
 
@@ -86,7 +84,7 @@ Matrix34_transformation
 
 R3*
 Matrix34_rotate
-( R3             *t
+( R3             *r
 , const R3       *v
 , const Matrix34 *T
 ) ;

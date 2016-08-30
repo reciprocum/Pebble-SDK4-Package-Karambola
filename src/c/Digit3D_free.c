@@ -3,7 +3,7 @@
    File   : Digit3D_free.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h55 August 23 2016
+   Last revision: 18h15 August 29 2016
 */
 
 #include "Digit3D.h"
@@ -15,8 +15,8 @@ Digit3D_free
 {
   if (this != NULL)
   {
-    free( Mesh3D_free( this->mesh ) ) ;
-    this->mesh = NULL ;
+    free( MeshR3_free( this->mesh ) )  ;  this->mesh = NULL ;
+    free( this )                       ;  this = NULL ;
   }
 
   return this ;

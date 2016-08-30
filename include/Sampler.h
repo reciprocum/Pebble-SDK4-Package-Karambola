@@ -3,7 +3,7 @@
    File   : Sampler.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 21h55 August 20 2016
+   Last revision: 11h55 August 28 2016
 */
 
 #pragma once
@@ -25,11 +25,12 @@ Sampler*  Sampler_free( Sampler *this ) ;
 void      Sampler_init( Sampler *this ) ;
 void      Sampler_push( Sampler *this, const int16_t sample ) ;
 
-void 
+void
 Sampler_plot
-( Sampler        *this
-, Layer          *me
-, GContext       *gCtx
+( GContext       *gCtx
+, Sampler        *this
+, const int       w                 // plot area width (pixels)
+, const int       h                 // plot area heigth (pixels)
 , const uint16_t  pHeadLag
 , const uint16_t  pShowMax          // Maximun number of samples to be plotted at once.
 , const uint8_t   pShowMin          // Minimum number of samples to be plotted at once.

@@ -19,7 +19,7 @@ typedef struct
 
 /*  Code TEMPLATEs for bits initialization
 const unsigned char *SOME_CONSTANT_MAP_L2R[??]
-// Bit index ruller      [00..07]    [08..15]    [16..23]    [24..31]    [32..39]    [40..47]    [48..55]    [56..63]
+// Bit index ruller      [00..07]    [08..15]    [16..23]    [24..31]    [32..39]    [40..47]    [48..55]    [56..63]   ...  you can extend this as much as you please.
 //                       00000000    00111111    11112222    22222233    33333333    44444444    44555555    55556666
 //                       01234567    89012345    67890123    45678901    23456789    01234567    89012345    67890123
 = { (unsigned char[]){ 0b????????, 0b????????, 0b????????, 0b????????, 0b????????, 0b????????, 0b????????, 0b???????? }
@@ -53,6 +53,7 @@ const unsigned char *SOME_CONSTANT_MAP_L2R
   , 0b????????    // 160..167
   , 0b????????    // 168..175
   , 0b????????    // 176..183
+//  ...  you can extend this as much as you please.
   }
 ;
 */

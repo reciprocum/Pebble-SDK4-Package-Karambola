@@ -3,7 +3,7 @@
    File   : Digit3D_new.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h55 August 23 2016
+   Last revision: 18h55 August 29 2016
 */
 
 #include "Digit3D.h"
@@ -21,14 +21,14 @@ Digit3D_new
   switch (this->type = this->typeMax = typeMax)
   {
     case DIGIT2D_7SEGBONE:
-      this->mesh = Mesh3D_new( DIGIT2D_7SEGBONE_VERTEXINFO.pointsNum
+      this->mesh = MeshR3_new( DIGIT2D_7SEGBONE_VERTEXINFO.pointsNum
                              , DIGIT2D_7SEGBONE_EDGEINFO.edgesNum
                              , 0
                              ) ;
       break ;
 
     case DIGIT2D_7SEGSKIN:
-      this->mesh = Mesh3D_new( DIGIT2D_7SEGSKIN_VERTEXINFO.pointsNum
+      this->mesh = MeshR3_new( DIGIT2D_7SEGSKIN_VERTEXINFO.pointsNum
                              , DIGIT2D_7SEGSKIN_EDGEINFO.edgesNum
                              , 0
                              ) ;
@@ -36,21 +36,21 @@ Digit3D_new
     
     case DIGIT2D_7SEGBONESKIN:
     case DIGIT2D_7SEGSKINBONE:
-      this->mesh = Mesh3D_new( DIGIT2D_7SEGSKINBONE_VERTEXINFO.pointsNum
+      this->mesh = MeshR3_new( DIGIT2D_7SEGSKINBONE_VERTEXINFO.pointsNum
                              , DIGIT2D_7SEGSKINBONE_EDGEINFO.edgesNum
                              , 0
                              ) ;
       break ;
 
     case DIGIT2D_CURVYBONE:
-      this->mesh = Mesh3D_new( DIGIT2D_CURVYBONE_VERTEXINFO.pointsNum
+      this->mesh = MeshR3_new( DIGIT2D_CURVYBONE_VERTEXINFO.pointsNum
                              , DIGIT2D_CURVYBONE_EDGEINFO.edgesNum
                              , 0
                              ) ;
       break ;
 
     case DIGIT2D_CURVYSKIN:
-      this->mesh = Mesh3D_new( DIGIT2D_CURVYSKIN_VERTEXINFO.pointsNum
+      this->mesh = MeshR3_new( DIGIT2D_CURVYSKIN_VERTEXINFO.pointsNum
                              , DIGIT2D_CURVYSKIN_EDGEINFO.edgesNum
                              , 0
                              ) ;
@@ -58,7 +58,7 @@ Digit3D_new
 
     case DIGIT2D_CURVYBONESKIN:
     case DIGIT2D_CURVYSKINBONE:
-      this->mesh = Mesh3D_new( DIGIT2D_CURVYSKINBONE_VERTEXINFO.pointsNum
+      this->mesh = MeshR3_new( DIGIT2D_CURVYSKINBONE_VERTEXINFO.pointsNum
                              , DIGIT2D_CURVYSKINBONE_EDGEINFO.edgesNum
                              , 0
                              ) ;

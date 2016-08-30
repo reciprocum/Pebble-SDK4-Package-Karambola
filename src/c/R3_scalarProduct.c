@@ -1,5 +1,5 @@
 /*
-   Package: R3
+   Package: R3 - float based 3D algebra.
    File   : R3_scalarProduct.c
    Author : Afonso Santos, Portugal
 

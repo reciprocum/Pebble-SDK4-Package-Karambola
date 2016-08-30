@@ -12,12 +12,12 @@
 TransformR3*
 TransformR3_setTranslation
 ( TransformR3 *this
-, const R3    *translation
+, const R3     translation
 )
 {
-  if (!R3_isEqual( &this->__translation, translation ))
+  if (!R3_isEqual( &this->__translation, &translation ))
   {
-    R3_assign( &this->__translation, translation ) ;
+    R3_assign( &this->__translation, &translation ) ;
     this->version++ ;
   }
 
