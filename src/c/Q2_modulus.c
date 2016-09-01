@@ -18,5 +18,5 @@ Q2_modulus
   const Q x = v->x ;
   const Q y = v->y ;
 
-  return Q_sqrt( Q_sq( x ) + Q_sq( y ) ) ;
+  return Q_sqrt( Q_mul( x, x ) + Q_mul( y, y ) ) ;
 }

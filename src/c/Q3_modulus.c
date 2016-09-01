@@ -19,5 +19,5 @@ Q3_modulus
   const Q y = v->y ;
   const Q z = v->z ;
 
-  return Q_sqrt( Q_sq( x ) + Q_sq( y ) + Q_sq( z ) ) ;
+  return Q_sqrt( Q_mul( x, x ) + Q_mul( y, y ) + Q_mul( z, z ) ) ;
 }

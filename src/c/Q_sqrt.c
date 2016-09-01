@@ -1,5 +1,5 @@
 /*
-   Package: Q - Fixed point (Q15.16) math.
+   Package: Q - Fixed point (Q15.16) math. (adapted from libfixmath)
    File   : Q_sqrt.c
    Author : Afonso Santos, Portugal
 

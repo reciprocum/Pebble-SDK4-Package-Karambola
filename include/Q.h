@@ -1,9 +1,9 @@
 /*
-   Package: Q - Fixed point (Q15.16) math.
+   Package: Q - Fixed point (Q15.16) math. (adapted from libfixmath)
    File   : Q.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 14h05 August 30 2016
+   Last revision: 16h55 September 01 2016
 */
 
 #pragma once
@@ -13,30 +13,63 @@
 
 typedef int32_t Q ;
 
-#define Q_MAX     0x7FFFFFFF   /* the maximum value of Q */
-#define Q_MIN     0x80000000   /* the minimum value of Q */
-#define Q_EPSILON 0x00000001   /* the smallest value of Q */
+extern const Q  Q_MAX         ;   /* the maximum value of Q */
+extern const Q  Q_MIN         ;   /* the minimum value of Q */
+extern const Q  Q_EPSILON     ;   /* the smallest value of Q */
 
-#define Q_0      0x00000000   /* Q value of 0.0      */
-#define Q_1      0x00010000   /* Q value of 1.0      */
+/* Trigonometric constants */
+extern const Q  Q_PI          ;   /* Q value of PI      */
+extern const Q  Q_2_PI        ;   /* Q value of 2*PI    */
+extern const Q  Q_PI_DIV_2    ;   /* Q value of PI/2    */
+extern const Q  Q_PI_DIV_4    ;   /* Q value of PI/4    */
+extern const Q  Q_3_PI_DIV_4  ;   /* Q value of 3/4*PI  */
+extern const Q  Q_4_DIV_PI    ;   /* Q value of 4/PI    */
 
-#define Q_PI     0x0003243F   /* Q value of 'pi'     */
-#define Q_2PI    0x0006487E   /* Q value of 2*pi     */
-#define Q_PI2    0x0001921F   /* Q value of pi/2     */
-#define Q_PI4    0x0000C90F   /* Q value of pi/4     */
+extern const Q  Q_SQRT2       ;   /* Q value of sqrt(2)  */
+extern const Q  Q_E           ;   /* Q value of E        */
 
-#define Q_SQRT2  0x00016A09   /* Q value of sqrt(2)  */
-#define Q_E      0x0002B7E1   /* Q value of 'e'      */
+#define Q_0  0x00000000           /* Q value of 0.0     */
+#define Q_1  0x00010000           /* Q value of 1.0     */
 
 #define Q_float(q) ((q) / (float)Q_1)
 #define Q_make(f)  ((Q)((f) * Q_1))
 #define Q_mul(a,b) ((Q)(((int64_t)a * b) >> 16))
 #define Q_div(a,b) ((Q)(((int64_t)a << 16) / b))
-#define Q_sq(a)    Q_mul(a,a)
 #define Q_int(q)   ((int)((q) >> 16))
 #define Q_frac(q)  (Q_float((q) & 0xFFFF))
 
-Q     Q_normalizeAngle( Q a ) ;
-Q     Q_reduceAngle   ( Q a ) ;
-Q     Q_sqrt          ( const Q x ) ;
-char* Q_str           ( const Q x ) ;
+
+inline
+Q
+Q_normalizeAngleRad
+( const Q inAngleRad )
+{
+  return inAngleRad % Q_2_PI ;   // Ditch "surplus" 2*PI turns.
+}
+
+
+inline
+Q
+Q_reduceAngleRad
+( const Q inAngleRad )
+{
+  Q angleRad = Q_normalizeAngleRad( inAngleRad ) ;
+
+  if (angleRad > Q_PI_DIV_2)
+    angleRad -= Q_PI ;
+  else if (angleRad < -Q_PI_DIV_2)
+    angleRad += Q_PI ;
+
+  return angleRad ;
+}
+
+
+char* Q_str( const Q x ) ;
+
+Q     Q_sqrt( const Q x ) ;
+
+/* Trigonometric functions */
+Q     Q_sinRad ( const Q angleRad ) ;
+Q     Q_sinRad_( const Q angleRad ) ;   // CAUTION !!! Works only for <angleRad> in [-PI/2, +PI/2] (no angle reduction)
+Q     Q_cosRad ( const Q angleRad ) ;
+Q     Q_cosRad_( const Q angleRad ) ;   // CAUTION !!! Works only for <angleRad> in [-PI, 0] (no angle reduction)

@@ -138,14 +138,6 @@ MeshQ3_draw
         Q2 vCamera ;
         CamQ3_view( &vCamera, cam, &v->worldCoord ) ;
   
-        LOGD( "MeshQ3_draw:: vCamera.x = %s", Q_str(vCamera.x) ) ;
-        LOGD( "MeshQ3_draw:: vCamera.y = %s", Q_str(vCamera.y) ) ;
-
-        int x = k * Q_float(vCamera.x)  +  bX ;
-        int y = k * Q_float(vCamera.y)  +  bY ;
-        LOGD( "MeshQ3_draw:: int x = %d", x ) ;
-        LOGD( "MeshQ3_draw:: int y = %d", y ) ;
-
         // calculate device coordinates of vertex.
         __MeshQ3_vertex_screenPoint[mv].x = k * Q_float(vCamera.x)  +  bX ;
         __MeshQ3_vertex_screenPoint[mv].y = k * Q_float(vCamera.y)  +  bY ;
