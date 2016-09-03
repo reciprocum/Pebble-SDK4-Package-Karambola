@@ -3,7 +3,7 @@
    File   : MeshR3_draw.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 17h45 August 29 2016
+   Last revision: 10h05 September 02 2016
 */
 
 #include "Config.h"
@@ -50,8 +50,8 @@ MeshR3_draw
       if (this->normal_worldCoord)
         { // Planar mesh: determine its visibility from its normal vector. Use any vertex as anchor for normal.
           R3 towardsMeshR3_normalAnchor ;
-          R3_sub( &towardsMeshR3_normalAnchor, &vertices[0].worldCoord, &cam->viewPoint) ;
-          const bool meshIsVisible = (R3_dotProduct( this->normal_worldCoord, &towardsMeshR3_normalAnchor) < 0.0) ;
+          R3_sub( &towardsMeshR3_normalAnchor, &vertices[0].worldCoord, &cam->viewPoint ) ;
+          const bool meshIsVisible = (R3_dot( this->normal_worldCoord, &towardsMeshR3_normalAnchor ) < 0.0f) ;
 
           for ( unsigned int me = 0 ; me < edgesNum ; ++me )    // Mark all meshe's edges with mesh visibility result.
               edgesState[me].isHidden = meshIsVisible ;
@@ -62,7 +62,7 @@ MeshR3_draw
             edgesState[me].isHidden = true ;
 
           // #2: Iterate all faces and mark all edges of visible faces as visible edges.
-          for ( uint8_t mf = 0 ; mf < facesNum ; ++mf )
+          for (uint8_t mf = 0 ; mf < facesNum ; ++mf)
           {
             const Face *f = &faces[mf] ;
             
@@ -78,12 +78,12 @@ MeshR3_draw
             R3 towardsFaceAnchor ;
             R3_sub( &towardsFaceAnchor, anchorOfFaceNormal, &cam->viewPoint) ;
 
-            if (R3_dotProduct( &f->normal_worldCoord, &towardsFaceAnchor) < 0.0)
+            if (R3_dot( &f->normal_worldCoord, &towardsFaceAnchor) < 0.0f)
             {
               const unsigned int  faceEdgesNum    = f->faceInfo->edgesNum ;
               const uint16_t     *faceEdgeIndexes = f->faceInfo->edgeIndexes ;
 
-              for ( unsigned int fe = 0 ; fe < faceEdgesNum ; ++fe )    // Mark all this face's edges as visible.
+              for (unsigned int fe = 0 ; fe < faceEdgesNum ; ++fe)    // Mark all this face's edges as visible.
                 edgesState[faceEdgeIndexes[fe]].isHidden = false ;
             }
           }
@@ -107,7 +107,7 @@ MeshR3_draw
         vertices[mv].state.isHidden = true ;
 
       // Vertices mesh belong to visible edges are visible themselfs.
-      for ( unsigned int me = 0 ; me < edgesNum ; ++me )
+      for (unsigned int me = 0 ; me < edgesNum ; ++me)
       {
         const ViewFlags *edgeState = &edgesState[me] ;
 

@@ -1,9 +1,9 @@
 /*
    Package: R2 - float based 2D algebra.
-   File   : R2_dotProduct.c
+   File   : R2_dot.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 17h50 August 19 2016
+   Last revision: 06h65 September 02 2016
 */
 
 #include "R2.h"
@@ -12,7 +12,7 @@
 // a . b
 
 float
-R2_dotProduct
+R2_dot
 ( const R2 *a
 , const R2 *b
 )

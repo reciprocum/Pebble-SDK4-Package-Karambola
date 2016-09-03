@@ -3,7 +3,7 @@
    File   : MeshQ3_calculateFaceNormals.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h45 August 30 2016
+   Last revision: 10h25 September 02 2016
 */
 
 #include "MeshQ3.h"
@@ -46,6 +46,6 @@ MeshQ3_calculateFaceNormals
           , &vertices[edges[e1_idx].v2].worldCoord
           ) ;
 
-    Q3_crossProduct( &f->normal_worldCoord, &e0_v1v2, &e1_v1v2 ) ;
+    Q3_cross( &f->normal_worldCoord, &e0_v1v2, &e1_v1v2 ) ;
   }
 }

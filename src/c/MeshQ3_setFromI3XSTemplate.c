@@ -3,7 +3,7 @@
    File   : MeshQ3_setFromI3XSTemplate.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 11h55 August 30 2016
+   Last revision: 18h55 September 01 2016
 */
 
 #include "Config.h"
@@ -19,7 +19,7 @@ MeshQ3_setFromI3XSTemplate
 , const Q3              position
 )
 {
-  const Q  normalize = Q_make(I3XS_MAXABS) << 1 ;    // 2.0f * I3XS_MAXABS
+  const Q  normalize = Q_from_int(I3XS_MAXABS) << 1 ;    // 2 * I3XS_MAXABS
 
   const Q  scaleX    = Q_div( size.x, normalize ) ;
   const Q  scaleY    = Q_div( size.y, normalize ) ;
@@ -31,9 +31,9 @@ MeshQ3_setFromI3XSTemplate
 
   for (int vIdx = 0  ;  vIdx < verticesNum  ;  ++vIdx)
     Q3_set( &vertices[vIdx].worldCoord
-          , Q_mul( scaleX, Q_make(templatePoints[vIdx].x) )  +  position.x
-          , Q_mul( scaleY, Q_make(templatePoints[vIdx].y) )  +  position.y
-          , Q_mul( scaleZ, Q_make(templatePoints[vIdx].z) )  +  position.z
+          , Q_mul( scaleX, Q_from_int(templatePoints[vIdx].x) )  +  position.x
+          , Q_mul( scaleY, Q_from_int(templatePoints[vIdx].y) )  +  position.y
+          , Q_mul( scaleZ, Q_from_int(templatePoints[vIdx].z) )  +  position.z
           ) ;
 
   this->edgeInfo = edgeInfo ;

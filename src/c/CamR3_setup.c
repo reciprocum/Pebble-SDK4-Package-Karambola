@@ -3,7 +3,7 @@
    File   : CamR3_setup.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 17h20 August 29 2016
+   Last revision: 11h00 September 02 2016
 */
 
 #include "CamR3.h"
@@ -21,9 +21,9 @@ CamR3_setup
 {
   R3_assign( &cam->viewPoint, viewPoint ) ;
 
-  R3_versor( R3_sub( &cam->zAxisVersor, lookingAt, &cam->viewPoint ) ) ;	              // zAxisVersor = versor( lookingAt - viewPoint )
-  R3_versor( R3_crossProduct( &cam->xAxisVersor, &cam->zAxisVersor, upReference ) ) ;	  // xAxisVersor = versor( zAxisVersor X upReference  )
-  R3_crossProduct( &cam->yAxisVersor, &cam->zAxisVersor, &cam->xAxisVersor ) ;          // yAxisVersor = zAxisVersor X xAxisVersor
+  R3_versor( &cam->zAxisVersor, R3_sub( &cam->zAxisVersor, lookingAt, &cam->viewPoint ) ) ;	        // zAxisVersor = versor( lookingAt - viewPoint )
+  R3_versor( &cam->xAxisVersor, R3_cross( &cam->xAxisVersor, &cam->zAxisVersor, upReference ) ) ;	  // xAxisVersor = versor( zAxisVersor X upReference  )
+  R3_cross( &cam->yAxisVersor, &cam->zAxisVersor, &cam->xAxisVersor ) ;                             // yAxisVersor = zAxisVersor X xAxisVersor
   cam->zoom           = zoom ;
   cam->projectionMode = projectionMode ;
 

@@ -1,9 +1,9 @@
 /*
-   Package: R2
+   Package: R2 - float based 2D algebra.
    File   : R2.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 17h05 August 16 2016
+   Last revision: 07h45 September 02 2016
 */
 
 #pragma once
@@ -18,39 +18,42 @@ typedef struct
 } R2 ;
 
 
-#define R2_origin        (R2){ .x = 0.0f, .y = 0.0f }
-#define R2_versorPlusX   (R2){ .x =+1.0f, .y = 0.0f }
-#define R2_versorMinusX  (R2){ .x =-1.0f, .y = 0.0f }
-#define R2_versorPlusY   (R2){ .x = 0.0f, .y =+1.0f }
-#define R2_versorMinusY  (R2){ .x = 0.0f, .y =-1.0f }
+extern const R2 R2_origin        ;
+extern const R2 R2_versorPlusX   ;
+extern const R2 R2_versorMinusX  ;
+extern const R2 R2_versorPlusY   ;
+extern const R2 R2_versorMinusY  ;
 
 
-// v := { x, y }
+//  v := { x, y }
 R2*   R2_set( R2 *v, const float x, const float y ) ;
 
-// b := a
+//  b := a
 R2*   R2_assign( R2 *b, const R2 *a ) ;
 
-// a == b
+//  a == b
 bool  R2_isEqual( const R2 *a, const R2 *b ) ;
 
-// |v|
-float R2_modulus( const R2 *v ) ;
+//  |v|
+float R2_mod( const R2 *v ) ;
 
-// c := a + b
+//  c := a + b
 R2*   R2_add( R2 *c, const R2 *a, const R2 *b ) ;
 
-// c := a - b
+//  c := a - b
 R2*   R2_sub( R2 *c, const R2 *a, const R2 *b ) ;
 
-// b := k * a
-R2*   R2_scalarProduct( R2 *b, const float k, const R2 *a ) ;
+//  b := k * a
+R2*   R2_sca( R2 *b, const float k, const R2 *a ) ;
 
-//  v := k / |v| * v
-R2*   R2_scale( const float k, R2 *v ) ;
+//  b := k / |a| * a
+R2*   R2_scaTo( R2 *b, const float k, const R2 *a ) ;
 
-//  v := v / |v|
-R2*   R2_versor( R2 *v ) ;
+//  b = a / |a|
+R2*   R2_versor( R2 *b, const R2 *a ) ;
 
-// a . b
-float R2_dotProduct( const R2 *a, const R2 *b ) ;
+//  a . b
+float R2_dot( const R2 *a, const R2 *b ) ;
+
+//  a := b X ROT( angleRad )
+R2*   R2_rotRad( R2 *a, const R2 *b, const float  angleRad ) ;

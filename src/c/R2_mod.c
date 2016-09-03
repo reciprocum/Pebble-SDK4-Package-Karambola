@@ -1,9 +1,9 @@
 /*
    Package: R2 - float based 2D algebra.
-   File   : R2_modulus.c
+   File   : R2_mod.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 17h15 August 19 2016
+   Last revision: 06h65 September 02 2016
 */
 
 #include "FastMath.h"
@@ -13,7 +13,7 @@
 // |v|
 
 float
-R2_modulus
+R2_mod
 ( const R2 *v )
 {
   const float x = v->x ;

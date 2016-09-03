@@ -1,9 +1,9 @@
 /*
    Package: Q2 - Q15.16 based 2D algebra.
-   File   : Q2_dotProduct.c
+   File   : Q2_dot.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h55 August 29 2016
+   Last revision: 06h15 September 02 2016
 */
 
 #include "Q2.h"
@@ -12,7 +12,7 @@
 // a . b
 
 Q
-Q2_dotProduct
+Q2_dot
 ( const Q2 *a
 , const Q2 *b
 )

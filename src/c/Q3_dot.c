@@ -1,9 +1,9 @@
 /*
    Package: Q3 - Q15.16 based 3D algebra.
-   File   : Q3_dotProduct.c
+   File   : Q3_dot.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h15 August 29 2016
+   Last revision: 06h65 September 02 2016
 */
 
 #include "Q3.h"
@@ -12,7 +12,7 @@
 // a . b
 
 Q
-Q3_dotProduct
+Q3_dot
 ( const Q3 *a
 , const Q3 *b
 )

@@ -1,9 +1,9 @@
 /*
    Package: Q2 - Q15.16 based 2D algebra.
-   File   : Q2_modulus.c
+   File   : Q2_mod.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h55 August 29 2016
+   Last revision: 06h15 September 02 2016
 */
 
 #include "Q2.h"
@@ -12,7 +12,7 @@
 // |v|
 
 Q
-Q2_modulus
+Q2_mod
 ( const Q2 *v )
 {
   const Q x = v->x ;

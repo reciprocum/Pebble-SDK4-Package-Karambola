@@ -18,16 +18,16 @@ Matrix34_rotation
 , const float   roll    // rotationZ
 )
 {
-  const float halfPitch = 0.5f * FastMath_normalizeAngle( pitch ) ;
-  const float halfYaw   = 0.5f * FastMath_normalizeAngle( yaw ) ;
-  const float halfRoll  = 0.5f * FastMath_normalizeAngle( roll ) ;
+  const float halfPitch = 0.5f * FastMath_normalizeAngleRad( pitch ) ;
+  const float halfYaw   = 0.5f * FastMath_normalizeAngleRad( yaw ) ;
+  const float halfRoll  = 0.5f * FastMath_normalizeAngleRad( roll ) ;
 
-  const float sinPitch = FastMath_sin( halfPitch ) ;
-  const float cosPitch = FastMath_cos( halfPitch ) ;
-  const float sinYaw   = FastMath_sin( halfYaw ) ;
-  const float cosYaw   = FastMath_cos( halfYaw ) ;
-  const float sinRoll  = FastMath_sin( halfRoll ) ;
-  const float cosRoll  = FastMath_cos( halfRoll ) ;
+  const float sinPitch = FastMath_sinRad( halfPitch ) ;
+  const float cosPitch = FastMath_cosRad( halfPitch ) ;
+  const float sinYaw   = FastMath_sinRad( halfYaw ) ;
+  const float cosYaw   = FastMath_cosRad( halfYaw ) ;
+  const float sinRoll  = FastMath_sinRad( halfRoll ) ;
+  const float cosRoll  = FastMath_cosRad( halfRoll ) ;
 
   const float x = (cosYaw * sinPitch * cosRoll) + (sinYaw * cosPitch * sinRoll) ;
   const float y = (sinYaw * cosPitch * cosRoll) - (cosYaw * sinPitch * sinRoll) ;

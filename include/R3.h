@@ -1,9 +1,9 @@
 /*
-   Package: R3
+   Package: R3 - float based 3D algebra.
    File   : R3.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 17h05 August 16 2016
+   Last revision: 14h35 September 02 2016
 */
 
 #pragma once
@@ -19,44 +19,47 @@ typedef struct
 } R3 ;
 
 
-#define R3_origin        (R3){ .x = 0.0f, .y = 0.0f, .z = 0.0f }
-#define R3_versorPlusX   (R3){ .x =+1.0f, .y = 0.0f, .z = 0.0f }
-#define R3_versorMinusX  (R3){ .x =-1.0f, .y = 0.0f, .z = 0.0f }
-#define R3_versorPlusY   (R3){ .x = 0.0f, .y =+1.0f, .z = 0.0f }
-#define R3_versorMinusY  (R3){ .x = 0.0f, .y =-1.0f, .z = 0.0f }
-#define R3_versorPlusZ   (R3){ .x = 0.0f, .y = 0.0f, .z =+1.0f }
-#define R3_versorMinusZ  (R3){ .x = 0.0f, .y = 0.0f, .z =-1.0f }
+extern const R3 R3_origin        ;
+extern const R3 R3_versorPlusX   ;
+extern const R3 R3_versorMinusX  ;
+extern const R3 R3_versorPlusY   ;
+extern const R3 R3_versorMinusY  ;
+extern const R3 R3_versorPlusZ   ;
+extern const R3 R3_versorMinusZ  ;
 
 
-// v := { x, y, z }
+//  v := { x, y, z }
 R3*    R3_set( R3 *v, const float x, const float y, const float z ) ;
 
-// b := a
+//  b := a
 R3*    R3_assign( R3 *b, const R3 *a ) ;
 
-// a == b
+//  a == b
 bool   R3_isEqual( const R3 *a, const R3 *b ) ;
 
-// |v|
-float  R3_modulus( const R3 *v ) ;
+//  |v|
+float  R3_mod( const R3 *v ) ;
 
-// c := a + b
+//  c := a + b
 R3*    R3_add( R3 *c, const R3 *a, const R3 *b ) ;
 
-// c := a - b
+//  c := a - b
 R3*    R3_sub( R3 *c, const R3 *a, const R3 *b ) ;
 
-// b := k * a
-R3*    R3_scalarProduct( R3 *b, const float	k, const R3 *a ) ;
+//  b := k * a
+R3*    R3_sca( R3 *b, const float	k, const R3 *a ) ;
 
-//  v := k / |v| * v
-R3*    R3_scale( const float k, R3 *v ) ;
+//  b := k / |a| * a
+R3*    R3_scaTo( R3 *b, const float k, const R3 *a ) ;
 
-//  v := v / |v|
-R3*    R3_versor( R3 *v ) ;
+//  b = a / |a|
+R3*    R3_versor( R3 *b, const R3 *a ) ;
 
-// a . b
-float  R3_dotProduct( const R3 *a, const R3 *b ) ;
+//  a . b
+float  R3_dot( const R3 *a, const R3 *b ) ;
 
-// c := a x b
-R3*    R3_crossProduct( R3 *c, const R3 *a, const R3 *b ) ;
+//  c := a x b
+R3*    R3_cross( R3 *c, const R3 *a, const R3 *b ) ;
+
+//  a := b X ROTZ( angleRad )
+R3*    R3_rotZrad( R3 *a, const R3 *b, const float  angleRad ) ;

@@ -26,7 +26,7 @@ CamQ3_view
   {
     case CAM_PROJECTION_PERSPECTIVE:
       {
-        const Q z = Q3_dotProduct( &cam->zAxisVersor, &vCam ) ;
+        const Q z = Q3_dot( &cam->zAxisVersor, &vCam ) ;
         k = Q_div( cam->zoom, z ) ;
       }
       break ;
@@ -36,8 +36,8 @@ CamQ3_view
       break ;
   }
 
-  const Q  x = Q3_dotProduct( &cam->xAxisVersor, &vCam ) ;
-  const Q  y = Q3_dotProduct( &cam->yAxisVersor, &vCam ) ;
+  const Q  x = Q3_dot( &cam->xAxisVersor, &vCam ) ;
+  const Q  y = Q3_dot( &cam->yAxisVersor, &vCam ) ;
 
   return Q2_set( v2
                , Q_mul( k, x )

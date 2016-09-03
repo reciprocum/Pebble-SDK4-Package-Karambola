@@ -1,9 +1,9 @@
 /*
    Package: Q2 - Q15.16 based 2D algebra.
-   File   : Q2_scalarProduct.c
+   File   : Q2_sca.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h55 August 29 2016
+   Last revision: 06h15 September 02 2016
 */
 
 #include "Q2.h"
@@ -12,8 +12,8 @@
 // b := k * a
 
 Q2*
-Q2_scalarProduct
-( Q2       *b
+Q2_sca
+(       Q2 *b
 , const Q	  k
 , const Q2 *a
 )

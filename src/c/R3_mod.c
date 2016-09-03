@@ -1,9 +1,9 @@
 /*
    Package: R3 - float based 3D algebra.
-   File   : R3_modulus.c
+   File   : R3_mod.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 11h35 August 23 2016
+   Last revision: 06h65 September 02 2016
 */
 
 #include "FastMath.h"
@@ -13,7 +13,7 @@
 // |v|
 
 float
-R3_modulus
+R3_mod
 ( const R3 *v )
 {
   const float x = v->x ;

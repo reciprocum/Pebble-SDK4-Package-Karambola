@@ -3,7 +3,7 @@
    File   : CamR3_view.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 17h20 August 29 2016
+   Last revision: 10h05 September 02 2016
 */
 
 #include "CamR3.h"
@@ -20,12 +20,12 @@ CamR3_view
 
   R3_sub( &vCam, v3D, &cam->viewPoint ) ;			      // vCamera = norm( v - Eye )
 
-  float k = 1.0 ;  // Assigned value just to mute the compiler warning.
+  float k = 1.0f ;  // Assigned value just to mute the compiler warning.
 
   switch (cam->projectionMode)
   {
     case CAM_PROJECTION_PERSPECTIVE:
-      k = cam->zoom / R3_dotProduct( &cam->zAxisVersor, &vCam ) ;
+      k = cam->zoom / R3_dot( &cam->zAxisVersor, &vCam ) ;
       break ;
 
     case CAM_PROJECTION_ISOMETRIC:
@@ -34,7 +34,7 @@ CamR3_view
   }
 
   return R2_set( v2D
-               , k * R3_dotProduct( &cam->xAxisVersor, &vCam )
-               , k * R3_dotProduct( &cam->yAxisVersor, &vCam )
+               , k * R3_dot( &cam->xAxisVersor, &vCam )
+               , k * R3_dot( &cam->yAxisVersor, &vCam )
                ) ;
 }

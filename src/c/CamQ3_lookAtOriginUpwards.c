@@ -19,12 +19,12 @@ CamQ3_lookAtOriginUpwards
 {
   // setup 3D camera
   return CamQ3_setup( cam
-                    , (viewPoint->x != Q_0  ||  viewPoint->y != Q_0)            // Viewpoint not on Z axis ?
-                      ? viewPoint                                               // Use original view point.
+                    , (viewPoint->x != Q_0  ||  viewPoint->y != Q_0)                // Viewpoint not on Z axis ?
+                      ? viewPoint                                                   // Use original view point.
                       : &(Q3){ .x = Q_EPSILON, .y = Q_EPSILON, .z = viewPoint->z}   // Use epsilon displaced alternate view point (to avoid math indetermination).
-                    , &Q3_origin                                                // Looking at.
-                    , &Q3_versorPlusZ                                           // Use Q3_versorPlusZ as vertical reference.
-                    , zoom                                                      // Zoom level.
-                    , projectionMode                                            // Projection mode.
+                    , &Q3_origin                                                    // Looking at.
+                    , &Q3_versorPlusZ                                               // Use Q3_versorPlusZ as vertical reference.
+                    , zoom                                                          // Zoom level.
+                    , projectionMode                                                // Projection mode.
                     ) ;
 }

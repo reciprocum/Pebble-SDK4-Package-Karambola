@@ -3,15 +3,15 @@
    File   : Q2_versor.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h55 August 29 2016
+   Last revision: 06h15 September 02 2016
 */
 
 #include "Q2.h"
 
 
-//  v = v / |v|
+//  a = b / |b|
 
 Q2*
 Q2_versor
-( Q2 *v )
-{ return Q2_scale( Q_1, v ) ; }
+( Q2 *a, const Q2 *b )
+{ return Q2_scaTo( a, Q_1, b ) ; }

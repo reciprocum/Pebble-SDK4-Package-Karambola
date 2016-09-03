@@ -3,7 +3,7 @@
    File   : Q2.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h55 August 29 2016
+   Last revision: 15h45 September 02 2016
 */
 
 #pragma once
@@ -18,38 +18,42 @@ typedef struct
 } Q2 ;
 
 
-#define Q2_origin        (Q2){ .x = Q_0, .y = Q_0 }
-#define Q2_versorPlusX   (Q2){ .x =+Q_1, .y = Q_0 }
-#define Q2_versorMinusX  (Q2){ .x =-Q_1, .y = Q_0 }
-#define Q2_versorPlusY   (Q2){ .x = Q_0, .y =+Q_1 }
-#define Q2_versorMinusY  (Q2){ .x = Q_0, .y =-Q_1 }
+extern const Q2 Q2_origin       ;
+extern const Q2 Q2_versorPlusX  ;
+extern const Q2 Q2_versorMinusX ;
+extern const Q2 Q2_versorPlusY  ;
+extern const Q2 Q2_versorMinusY ;
 
 
-// v := { x, y }
+//  v := { x, y }
 Q2*   Q2_set( Q2 *v, const Q x, const Q y ) ;
 
-// b := a
+//  b := a
 Q2*   Q2_assign( Q2 *b, const Q2 *a ) ;
 
-// a == b
+//  a == b
 bool  Q2_isEqual( const Q2 *a, const Q2 *b ) ;
 
-Q Q2_modulus( const Q2 *v ) ;
+//  |v|
+Q     Q2_mod( const Q2 *v ) ;
 
-// c := a + b
+//  c := a + b
 Q2*   Q2_add( Q2 *c, const Q2 *a, const Q2 *b ) ;
 
-// c := a - b
+//  c := a - b
 Q2*   Q2_sub( Q2 *c, const Q2 *a, const Q2 *b ) ;
 
-// b := k * a
-Q2*   Q2_scalarProduct( Q2 *b, const Q k, const Q2 *a ) ;
+//  b := k * a
+Q2*   Q2_sca( Q2 *b, const Q k, const Q2 *a ) ;
 
-//  v := k / |v| * v
-Q2*   Q2_scale( const Q k, Q2 *v ) ;
+//  s := k / |v| * v
+Q2*   Q2_scaTo( Q2 *s, const Q k, const Q2 *v ) ;
 
-//  v := v / |v|
-Q2*   Q2_versor( Q2 *v ) ;
+//  a = b / |b|
+Q2*   Q2_versor( Q2 *a, const Q2 *b ) ;
 
-// a . b
-Q Q2_dotProduct( const Q2 *a, const Q2 *b ) ;
+//  a . b
+Q     Q2_dot( const Q2 *a, const Q2 *b ) ;
+
+//  a := b X ROT( angleRad )
+Q2*   Q2_rotRad( Q2 *a, const Q2 *b, const Q agleRad ) ;

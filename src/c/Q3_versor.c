@@ -3,15 +3,15 @@
    File   : Q3_versor.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h15 August 29 2016
+   Last revision: 06h65 September 02 2016
 */
 
 #include "Q3.h"
 
 
-//  v := v / |v|
+//  a = b / |b|
 
 Q3*
 Q3_versor
-( Q3 *v )
-{ return Q3_scale( Q_1, v ) ; }
+( Q3 *a, const Q3 *b )
+{ return Q3_scaTo( a, Q_1, b ) ; }

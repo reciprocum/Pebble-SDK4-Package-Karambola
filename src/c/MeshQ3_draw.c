@@ -51,7 +51,7 @@ MeshQ3_draw
         { // Planar mesh: determine its visibility from its normal vector. Use any vertex as anchor for normal.
           Q3 towardsMeshQ3_normalAnchor ;
           Q3_sub( &towardsMeshQ3_normalAnchor, &vertices[0].worldCoord, &cam->viewPoint) ;
-          const bool meshIsVisible = (Q3_dotProduct( this->normal_worldCoord, &towardsMeshQ3_normalAnchor) < 0.0) ;
+          const bool meshIsVisible = (Q3_dot( this->normal_worldCoord, &towardsMeshQ3_normalAnchor) < Q_0) ;
 
           for ( unsigned int me = 0 ; me < edgesNum ; ++me )    // Mark all meshe's edges with mesh visibility result.
               edgesState[me].isHidden = meshIsVisible ;
@@ -78,12 +78,12 @@ MeshQ3_draw
             Q3 towardsFaceAnchor ;
             Q3_sub( &towardsFaceAnchor, anchorOfFaceNormal, &cam->viewPoint) ;
 
-            if (Q3_dotProduct( &f->normal_worldCoord, &towardsFaceAnchor) < 0.0)
+            if (Q3_dot( &f->normal_worldCoord, &towardsFaceAnchor) < Q_0)
             {
               const unsigned int  faceEdgesNum    = f->faceInfo->edgesNum ;
               const uint16_t     *faceEdgeIndexes = f->faceInfo->edgeIndexes ;
 
-              for ( unsigned int fe = 0 ; fe < faceEdgesNum ; ++fe )    // Mark all this face's edges as visible.
+              for (unsigned int fe = 0 ; fe < faceEdgesNum ; ++fe)    // Mark all this face's edges as visible.
                 edgesState[faceEdgeIndexes[fe]].isHidden = false ;
             }
           }
@@ -128,7 +128,7 @@ MeshQ3_draw
     const uint8_t  bX = w >> 1 ;
     const uint8_t  bY = h >> 1 ;
 
-    for( unsigned int mv = 0  ;  mv < verticesNum  ;  ++mv )
+    for (unsigned int mv = 0  ;  mv < verticesNum  ;  ++mv)
     {
       const Vertex *v = &vertices[mv] ;
 
@@ -138,9 +138,9 @@ MeshQ3_draw
         Q2 vCamera ;
         CamQ3_view( &vCamera, cam, &v->worldCoord ) ;
   
-        // calculate device coordinates of vertex.
-        __MeshQ3_vertex_screenPoint[mv].x = k * Q_float(vCamera.x)  +  bX ;
-        __MeshQ3_vertex_screenPoint[mv].y = k * Q_float(vCamera.y)  +  bY ;
+        // calculate camera coordinates of vertex.
+        __MeshQ3_vertex_screenPoint[mv].x = k * Q_to_float(vCamera.x)  +  bX ;
+        __MeshQ3_vertex_screenPoint[mv].y = k * Q_to_float(vCamera.y)  +  bY ;
       }
     }
   }

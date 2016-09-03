@@ -3,7 +3,7 @@
    File   : MeshR3_calculateFaceNormals.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 17h45 August 29 2016
+   Last revision: 10h05 September 02 2016
 */
 
 #include "MeshR3.h"
@@ -46,6 +46,6 @@ MeshR3_calculateFaceNormals
           , &vertices[edges[e1_idx].v2].worldCoord
           ) ;
 
-    R3_crossProduct( &f->normal_worldCoord, &e0_v1v2, &e1_v1v2 ) ;
+    R3_cross( &f->normal_worldCoord, &e0_v1v2, &e1_v1v2 ) ;
   }
 }

@@ -1,9 +1,9 @@
 /*
    Package: R3 - float based 3D algebra.
-   File   : R3_crossProduct.c
+   File   : R3_cross.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h05 August 20 2016
+   Last revision: 06h65 September 02 2016
 */
 
 #include "R3.h"
@@ -12,7 +12,7 @@
 // c := a x b
 
 R3*
-R3_crossProduct
+R3_cross
 ( R3       *c
 , const R3 *a
 , const R3 *b

@@ -3,7 +3,7 @@
    File   : Q_str.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 17h05 August 30 2016
+   Last revision: 18h55 September 01 2016
 */
 
 #include "Q.h"
@@ -29,7 +29,7 @@ Q_str
     signal = "+" ;
   }
 
-  snprintf( qStr, sizeof(qStr), "%s%d.%05d", signal, Q_int(qAbs), (int)(100000 * Q_frac(qAbs)) ) ;
+  snprintf( qStr, sizeof(qStr), "%s%d.%05d", signal, Q_to_int(qAbs), (int)(100000 * Q_frac(qAbs)) ) ;
 
   return qStr ;
 }

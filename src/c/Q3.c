@@ -3,7 +3,7 @@
    File   : Q3.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 15h55 August 30 2016
+   Last revision: 11h20 September 02 2016
 */
 
 #include "Q3.h"

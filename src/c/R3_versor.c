@@ -3,15 +3,15 @@
    File   : R3_versor.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h05 August 20 2016
+   Last revision: 06h65 September 02 2016
 */
 
 #include "R3.h"
 
 
-//  v := v / |v|
+//  a = b / |b|
 
 R3*
 R3_versor
-( R3 *v )
-{ return R3_scale( 1.0f, v ) ; }
+( R3 *a, const R3 *b )
+{ return R3_scaTo( a, 1.0f, b ) ; }

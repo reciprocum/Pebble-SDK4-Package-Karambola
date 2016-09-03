@@ -21,9 +21,9 @@ CamQ3_setup
 {
   Q3_assign( &cam->viewPoint, viewPoint ) ;
 
-  Q3_versor( Q3_sub( &cam->zAxisVersor, lookingAt, &cam->viewPoint ) ) ;	              // zAxisVersor = versor( lookingAt - viewPoint )
-  Q3_versor( Q3_crossProduct( &cam->xAxisVersor, &cam->zAxisVersor, upReference ) ) ;   // xAxisVersor = versor( zAxisVersor X upReference  )
-  Q3_crossProduct( &cam->yAxisVersor, &cam->zAxisVersor, &cam->xAxisVersor ) ;          // yAxisVersor = zAxisVersor X xAxisVersor
+  Q3_versor( &cam->zAxisVersor, Q3_sub( &cam->zAxisVersor, lookingAt, &cam->viewPoint ) ) ;	        // zAxisVersor = versor( lookingAt - viewPoint )
+  Q3_versor( &cam->xAxisVersor, Q3_cross( &cam->xAxisVersor, &cam->zAxisVersor, upReference ) ) ;   // xAxisVersor = versor( zAxisVersor X upReference  )
+  Q3_cross( &cam->yAxisVersor, &cam->zAxisVersor, &cam->xAxisVersor ) ;                             // yAxisVersor = zAxisVersor X xAxisVersor
   cam->zoom           = zoom ;
   cam->projectionMode = projectionMode ;
 
