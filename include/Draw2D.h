@@ -3,7 +3,7 @@
    File   : Draw2D.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 11h55 August 23 2016
+   Last revision: 15h14 September 03 2016  GMT
 */
 
 #pragma once
@@ -29,11 +29,21 @@ typedef struct
 
 
 void
-Draw2D_line
+Draw2D_line_pattern
 ( GContext  *ctx
 , int        x0
 , int        y0
 , int        x1
 , int        y1
 , ink_t      inkPattern
+) ;
+
+
+void
+Draw2D_line
+( GContext  *ctx
+, int        x0
+, int        y0
+, int        x1
+, int        y1
 ) ;

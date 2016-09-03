@@ -3,7 +3,7 @@
    File   : Config.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 22h55 August 30 2016
+   Last revision: 13h34 September 03 2016  GMT
 */
 
 #pragma once

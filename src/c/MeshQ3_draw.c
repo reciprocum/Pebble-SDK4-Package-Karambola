@@ -3,7 +3,7 @@
    File   : MeshQ3_draw.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 13h35 August 30 2016
+   Last revision: 15h14 September 03 2016  GMT
 */
 
 #include "Config.h"
@@ -212,11 +212,11 @@ MeshQ3_draw
       //draw v1-v2 2D line.
 #ifdef QEMU
       // QEMU cannot cope with the workload of antialising, so have to use non-native/alternative line drawing method instead.
-      Draw2D_line( gCtx, p0.x, p0.y, p1.x, p1.y, edgesState[me].isHidden ? inkHidden : inkVisible ) ;
+      Draw2D_line_pattern( gCtx, p0.x, p0.y, p1.x, p1.y, edgesState[me].isHidden ? inkHidden : inkVisible ) ;
 #else
       // Running on a real watch.
       if (edgesState[me].isHidden)
-        Draw2D_line( gCtx, p0.x, p0.y, p1.x, p1.y, inkHidden ) ;   // Hidden lines are drawned without antialising.
+        Draw2D_line_pattern( gCtx, p0.x, p0.y, p1.x, p1.y, inkHidden ) ;   // Hidden lines are drawned without antialising.
       else
         graphics_draw_line( gCtx, p0, p1 ) ;                       // Visible lines are drawned antialised and with stroke width.
 #endif
