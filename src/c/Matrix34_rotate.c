@@ -3,7 +3,7 @@
    File   : Matrix34_rotate.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 10h10 August 30 2016
+   Last revision: 12h30 September 14 2016
 */
 
 #include "Matrix34.h"
@@ -23,11 +23,15 @@ Matrix34_rotate
     return NULL ;
   
   if (T == NULL)
-    return R3_assign( r, v ) ;    // NOP on NULL transformation.
+    *r = *v ;    // NOP on NULL transformation.
+  else
+  {
+    const float x = v->x * T->_11  +  v->y * T->_12  +  v->z * T->_13 ;
+    const float y = v->x * T->_21  +  v->y * T->_22  +  v->z * T->_23 ;
+    const float z = v->x * T->_31  +  v->y * T->_32  +  v->z * T->_33 ;
 
-  const float x = v->x * T->_11  +  v->y * T->_12  +  v->z * T->_13 ;
-  const float y = v->x * T->_21  +  v->y * T->_22  +  v->z * T->_23 ;
-  const float z = v->x * T->_31  +  v->y * T->_32  +  v->z * T->_33 ;
+    R3_set( r, x, y, z ) ;
+  }
 
-  return R3_set( r, x, y, z ) ;
+  return r ;
 }

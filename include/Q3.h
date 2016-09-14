@@ -3,7 +3,7 @@
    File   : Q3.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 23h55 September 02 2016
+   Last revision: 12h25 September 14 2016
 */
 
 #pragma once
@@ -30,9 +30,6 @@ extern const Q3 Q3_versorMinusZ ;
 
 //  v := { x, y, z }
 Q3*    Q3_set( Q3 *v, const Q x, const Q y, const Q z ) ;
-
-//  b := a
-Q3*    Q3_assign( Q3 *b, const Q3 *a ) ;
 
 //  a == b
 bool   Q3_isEqual( const Q3 *a, const Q3 *b ) ;

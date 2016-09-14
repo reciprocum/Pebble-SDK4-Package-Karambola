@@ -3,7 +3,7 @@
    File   : TransformR3_setTranslation.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h35 August 20 2016
+   Last revision: 12h35 September 14 2016
 */
 
 #include "TransformR3.h"
@@ -17,7 +17,7 @@ TransformR3_setTranslation
 {
   if (!R3_isEqual( &this->__translation, &translation ))
   {
-    R3_assign( &this->__translation, &translation ) ;
+    this->__translation = translation ;
     this->version++ ;
   }
 

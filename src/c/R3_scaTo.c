@@ -3,7 +3,7 @@
    File   : R3_scaTo.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 11h00 September 02 2016
+   Last revision: 12h35 September 14 2016
 */
 
 #include "R3.h"
@@ -21,7 +21,9 @@ R3_scaTo
   const float mod_v = R3_mod( v ) ;       // mod_v = |v|
 
   if (mod_v == 0.0f)
-    return R3_assign( s, v ) ;
-
-  return R3_sca( s, k / mod_v, v ) ;
+    *s = *v ;
+  else
+    R3_sca( s, k / mod_v, v ) ;
+  
+  return s ;
 }

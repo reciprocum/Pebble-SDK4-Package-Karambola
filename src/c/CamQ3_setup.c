@@ -3,7 +3,7 @@
    File   : CamQ3_setup.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 14h07 August 29 2016
+   Last revision: 12h25 September 14 2016
 */
 
 #include "CamQ3.h"
@@ -19,7 +19,7 @@ CamQ3_setup
 , const CamProjectionMode projectionMode
 )
 {
-  Q3_assign( &cam->viewPoint, viewPoint ) ;
+  cam->viewPoint = *viewPoint ;
 
   Q3_versor( &cam->zAxisVersor, Q3_sub( &cam->zAxisVersor, lookingAt, &cam->viewPoint ) ) ;	        // zAxisVersor = versor( lookingAt - viewPoint )
   Q3_versor( &cam->xAxisVersor, Q3_cross( &cam->xAxisVersor, &cam->zAxisVersor, upReference ) ) ;   // xAxisVersor = versor( zAxisVersor X upReference  )

@@ -3,7 +3,7 @@
    File   : R3.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 14h35 September 02 2016
+   Last revision: 12h25 September 14 2016
 */
 
 #pragma once
@@ -30,9 +30,6 @@ extern const R3 R3_versorMinusZ  ;
 
 //  v := { x, y, z }
 R3*    R3_set( R3 *v, const float x, const float y, const float z ) ;
-
-//  b := a
-R3*    R3_assign( R3 *b, const R3 *a ) ;
 
 //  a == b
 bool   R3_isEqual( const R3 *a, const R3 *b ) ;

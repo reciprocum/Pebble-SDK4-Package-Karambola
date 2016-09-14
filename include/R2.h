@@ -3,7 +3,7 @@
    File   : R2.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 07h45 September 02 2016
+   Last revision: 12h25 September 14 2016
 */
 
 #pragma once
@@ -27,9 +27,6 @@ extern const R2 R2_versorMinusY  ;
 
 //  v := { x, y }
 R2*   R2_set( R2 *v, const float x, const float y ) ;
-
-//  b := a
-R2*   R2_assign( R2 *b, const R2 *a ) ;
 
 //  a == b
 bool  R2_isEqual( const R2 *a, const R2 *b ) ;

@@ -3,7 +3,7 @@
    File   : Q2.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 15h45 September 02 2016
+   Last revision: 12h25 September 14 2016
 */
 
 #pragma once
@@ -27,9 +27,6 @@ extern const Q2 Q2_versorMinusY ;
 
 //  v := { x, y }
 Q2*   Q2_set( Q2 *v, const Q x, const Q y ) ;
-
-//  b := a
-Q2*   Q2_assign( Q2 *b, const Q2 *a ) ;
 
 //  a == b
 bool  Q2_isEqual( const Q2 *a, const Q2 *b ) ;

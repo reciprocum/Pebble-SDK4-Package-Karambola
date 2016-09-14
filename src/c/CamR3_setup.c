@@ -3,7 +3,7 @@
    File   : CamR3_setup.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 11h00 September 02 2016
+   Last revision: 12h25 September 14 2016
 */
 
 #include "CamR3.h"
@@ -19,7 +19,7 @@ CamR3_setup
 , const CamProjectionMode projectionMode
 )
 {
-  R3_assign( &cam->viewPoint, viewPoint ) ;
+  cam->viewPoint = *viewPoint ;
 
   R3_versor( &cam->zAxisVersor, R3_sub( &cam->zAxisVersor, lookingAt, &cam->viewPoint ) ) ;	        // zAxisVersor = versor( lookingAt - viewPoint )
   R3_versor( &cam->xAxisVersor, R3_cross( &cam->xAxisVersor, &cam->zAxisVersor, upReference ) ) ;	  // xAxisVersor = versor( zAxisVersor X upReference  )

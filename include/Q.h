@@ -35,8 +35,8 @@ extern const Q  Q_E           ;   /* Q value of E        */
 #define Q_from_int(i)   ((Q)((i) << 16))
 #define Q_to_float(q)   ((q) / (float)Q_1)
 #define Q_from_float(f) ((Q)((f) * Q_1))
-#define Q_mul(a,b)      ((Q)(((int64_t)a * b) >> 16))
-#define Q_div(a,b)      ((Q)(((int64_t)a << 16) / b))
+#define Q_mul(a,b)      ((Q)(((int64_t)(a) * (b)) >> 16))
+#define Q_div(a,b)      ((Q)(((int64_t)(a) << 16) / (b)))
 #define Q_frac(q)       (Q_to_float((q) & 0xFFFF))
 
 

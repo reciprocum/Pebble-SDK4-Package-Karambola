@@ -3,7 +3,7 @@
    File   : MeshR3_setFromI2XSTemplate.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h05 August 30 2016
+   Last revision: 12h35 September 14 2016
 */
 
 #include "MeshR3.h"
@@ -32,7 +32,7 @@ MeshR3_setFromI2XSTemplate
           ) ;
 
   // set the mesh normal.
-  R3_assign( this->normal_worldCoord, &R3_versorMinusZ ) ;
+  *this->normal_worldCoord = R3_versorMinusZ ;
 
   this->edgeInfo = edgeInfo ;
 }

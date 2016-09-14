@@ -3,7 +3,7 @@
    File   : TransformR3_setRotation.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 11h55 August 30 2016
+   Last revision: 12h25 September 14 2016
 */
 
 #include "TransformR3.h"
@@ -17,7 +17,7 @@ TransformR3_setRotation
 {
   if (!R3_isEqual( &this->__rotation, &rotation ))
   {
-    R3_assign( &this->__rotation, &rotation ) ;
+    this->__rotation = rotation ;
     this->version++ ;
   }
 

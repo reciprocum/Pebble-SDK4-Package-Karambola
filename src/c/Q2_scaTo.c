@@ -3,7 +3,7 @@
    File   : Q2_scaTo.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 06h15 September 02 2016
+   Last revision: 12h35 September 14 2016
 */
 
 #include "Q2.h"
@@ -21,7 +21,9 @@ Q2_scaTo
   const Q modulus = Q2_mod( v ) ;       // modulus = |v|
 
   if (modulus == Q_0)
-    return Q2_assign( s, v ) ;
-
-  return Q2_sca( s, Q_div( k, modulus ), v ) ;
+    *s = *v ;
+  else
+    Q2_sca( s, Q_div( k, modulus ), v ) ;
+  
+  return s ;
 }
