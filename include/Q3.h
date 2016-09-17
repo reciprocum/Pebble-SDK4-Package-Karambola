@@ -3,7 +3,7 @@
    File   : Q3.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h25 September 14 2016
+   Last revision: 22h22 September 16 2016
 */
 
 #pragma once
@@ -57,6 +57,9 @@ Q      Q3_dot( const Q3 *a, const Q3 *b ) ;
 
 //  c := a x b
 Q3*    Q3_cross( Q3 *c, const Q3 *a, const Q3 *b ) ;
+
+//  a := b X ROTX( angle )
+Q3*    Q3_rotX( Q3 *a, const Q3 *b, const int32_t agle ) ;
 
 //  a := b X ROTZ( angle )
 Q3*    Q3_rotZ( Q3 *a, const Q3 *b, const int32_t agle ) ;
