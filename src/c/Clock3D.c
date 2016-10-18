@@ -251,18 +251,18 @@ Clock3D_hours_radial_config
   const float animTranslation = 0.3 * digitHeight * animTranslationFraction[pAnimStep] ;
 
   RadialDial3D_config( this->hours_radial
-                     , this->hours_digitsValue > 9  ?  RADIAL_DIAL_SHAPE_SQUARE
-                                                    :  RADIAL_DIAL_SHAPE_CIRCLE
-                     , RADIAL_INNER_RADIUS                  // innerRadius
-                     , RADIAL_OUTER_RADIUS                  // outerRadius
-                     , (R3){ .x = DEG_180                   // rotationX
-                           , .y = DEG_270                   // rotationY
-                           , .z = DEG_270                   // rotationZ
-                           }
-                     , (R3){ .x = CUBE_HALF + animTranslation   // positionOfCenter (LEFT face, left shifted)
-                           , .y = 0.0
-                           , .z = 0.0
-                           }
+                      , this->hours_digitsValue > 9  ?  RADIAL_DIAL_SHAPE_SQUARE
+                                                     :  RADIAL_DIAL_SHAPE_CIRCLE
+                      , RADIAL_INNER_RADIUS                  // innerRadius
+                      , RADIAL_OUTER_RADIUS                  // outerRadius
+                      , (R3){ .x = DEG_180                   // rotationX
+                            , .y = DEG_270                   // rotationY
+                            , .z = DEG_270                   // rotationZ
+                            }
+                      , (R3){ .x = CUBE_HALF + animTranslation   // positionOfCenter (LEFT face, left shifted)
+                            , .y = 0.0
+                            , .z = 0.0
+                            }
                      ) ;
 }
 
@@ -381,7 +381,7 @@ Clock3D_minutes_radial_config
 {
   const float digitHeight     = 0.6 * CUBE_SIZE ;    // Outer rim left for radial dials.
   const float animTranslation = 0.3 * digitHeight * animTranslationFraction[pAnimStep] ;
-
+  
   RadialDial3D_config( this->minutes_radial
                      , RADIAL_DIAL_SHAPE_SQUARE
                      , RADIAL_INNER_RADIUS                       // innerRadius
@@ -484,18 +484,13 @@ void
 Clock3D_second100ths_leftDigit_config
 ( Clock3D *this )
 {
-#ifdef CLOCK3D_SECOND100THS_RADIAL
-  const float digitHeight = 0.6 * CUBE_SIZE ;   // Outer rim left for radial dial.
-#else
-  const float digitHeight = 0.8 * CUBE_SIZE ;   // No space left for radial dial.
-#endif
-
+  const float digitHeight = 0.6 * CUBE_SIZE ;    // Outer rim left for radial dials.
   const float digitGap    = 0.1 * CUBE_SIZE ;
   const float digitWidth  = (digitHeight - digitGap) / 2 ;
   const float digitShift  = (digitWidth + digitGap) / 2 ;
 
   Digit3D_config( this->second100ths_leftDigit
-                , CLOCK3D_SECOND100THS_DISPLAYTYPE
+                , DIGIT2D_7SEGSKINBONE
                 , (R2){ .x = digitWidth            // width
                       , .y = digitHeight           // height
                       }
@@ -518,18 +513,13 @@ void
 Clock3D_second100ths_rightDigit_config
 ( Clock3D *this )
 {
-#ifdef CLOCK3D_SECOND100THS_RADIAL
-  const float digitHeight = 0.6 * CUBE_SIZE ;   // Outer rim left for radial dial.
-#else
-  const float digitHeight = 0.8 * CUBE_SIZE ;   // No space left for radial dial.
-#endif
-
+  const float digitHeight = 0.6 * CUBE_SIZE ;    // Outer rim left for radial dials.
   const float digitGap    = 0.1 * CUBE_SIZE ;
   const float digitWidth  = (digitHeight - digitGap) / 2 ;
   const float digitShift  = (digitWidth + digitGap) / 2 ;
 
   Digit3D_config( this->second100ths_rightDigit
-                , CLOCK3D_SECOND100THS_DISPLAYTYPE
+                , DIGIT2D_7SEGSKINBONE
                 , (R2){ .x = digitWidth            // width
                       , .y = digitHeight           // height
                       }
@@ -548,7 +538,6 @@ Clock3D_second100ths_rightDigit_config
 }
 
 
-#ifdef CLOCK3D_SECOND100THS_RADIAL
 void
 Clock3D_second100ths_radial_config
 ( Clock3D *this )
@@ -567,7 +556,6 @@ Clock3D_second100ths_radial_config
                            }
                      ) ;
 }
-#endif
 
 
 void
@@ -695,10 +683,7 @@ Clock3D_config
   // Config clock's seconds 100th 2 digits & radial meshes.
   Clock3D_second100ths_leftDigit_config ( this ) ;
   Clock3D_second100ths_rightDigit_config( this ) ;
-
-#ifdef CLOCK3D_SECOND100THS_RADIAL
   Clock3D_second100ths_radial_config( this ) ;
-#endif
 }
 
 
@@ -769,11 +754,14 @@ Clock3D_setHours
   this->hours = pHours ;
 
   if (clock_is_24h_style( ))
-    this->hours_digitsValue = this->hours_radialValue = this->hours ;
+  {
+    this->hours_digitsValue = this->hours ;
+    this->hours_radialValue = this->hours ;
+  }
   else
   {
     this->hours_digitsValue = this->hours % 12 ;
-    this->hours_radialValue  = 2 * this->hours_digitsValue ;
+    this->hours_radialValue = 2 * this->hours_digitsValue ;
 
     if (this->hours_digitsValue == 0)
       this->hours_digitsValue = 12 ;
@@ -862,7 +850,7 @@ Clock3D_setMinutes
     Digit3D_setValue( this->minutes_rightDigitA, minutes_rightDigit ) ;
     this->minutes_rightDigitA->mesh->state.isDisabled = false ;   // Show A side
     this->minutes_rightDigitB->mesh->state.isDisabled = true  ;   // Hide B side
-  
+
     Clock3D_minutes_radial_config( this, this->minutes_radial_animStep ) ;
     RadialDial3D_setValue( this->minutes_radial, this->minutes ) ;
     this->minutes_radial->mesh->state.isDisabled = false ;       // Show A side
@@ -873,19 +861,19 @@ Clock3D_setMinutes
   if (minutes_leftDigit != this->minutes_leftDigitA->value)
   {
     Digit3D_setValue( this->minutes_leftDigitB, minutes_leftDigit ) ;   // Set B side value with new digit value.
-    this->minutes_leftDigitB->mesh->state.isDisabled = false ;                      // Show B side.
+    this->minutes_leftDigitB->mesh->state.isDisabled = false ;          // Show B side.
 
     if (this->minutes_leftDigit_animStep == 0)
-      this->minutes_leftDigit_animStep = 1 ;                                          // Activate flipping of this digit.
+      this->minutes_leftDigit_animStep = 1 ;                            // Activate flipping of this digit.
   }
 
   if (minutes_rightDigit != this->minutes_rightDigitA->value)
   {
     Digit3D_setValue( this->minutes_rightDigitB, minutes_rightDigit ) ;   // Set B side value with new digit value.
-    this->minutes_rightDigitB->mesh->state.isDisabled = false ;                       // Show B side.
+    this->minutes_rightDigitB->mesh->state.isDisabled = false ;           // Show B side.
 
     if (this->minutes_rightDigit_animStep == 0)
-      this->minutes_rightDigit_animStep = 1 ;                                           // Activate flipping of this digit.
+      this->minutes_rightDigit_animStep = 1 ;                             // Activate flipping of this digit.
   }
 
   if (this->minutes == 0)
@@ -925,7 +913,8 @@ Clock3D_setSeconds
 
   Digit3D_setValue( this->seconds_leftDigit , this->seconds / 10 ) ;
   Digit3D_setValue( this->seconds_rightDigit, this->seconds % 10 ) ;
-  RadialDial3D_setValue       ( this->seconds_radial    , this->seconds      ) ;
+
+  RadialDial3D_setValue( this->seconds_radial, this->seconds      ) ;
 }
 
 
@@ -949,18 +938,13 @@ Clock3D_setSecond100ths
     Clock3D_second100ths_rightDigit_config( this ) ;
     this->second100ths_rightDigit->mesh->state.isDisabled = false ;
 
-#ifdef CLOCK3D_SECOND100THS_RADIAL
     Clock3D_second100ths_radial_config( this ) ;
     this->second100ths_radial->mesh->state.isDisabled = false ;
-#endif
   }
 
   Digit3D_setValue( this->second100ths_leftDigit , this->second100ths / 10 ) ;   // 1/10 th of a second.
   Digit3D_setValue( this->second100ths_rightDigit, this->second100ths % 10 ) ;   // 1/100 th of a second.
-
-#ifdef CLOCK3D_SECOND100THS_RADIAL
   RadialDial3D_setValue( this->second100ths_radial, this->second100ths ) ;
-#endif
 }
 
 
@@ -1043,8 +1027,5 @@ Clock3D_draw
 
   MeshR3_draw( gCtx, this->second100ths_leftDigit ->mesh, cam, w, h, transparency ) ;
   MeshR3_draw( gCtx, this->second100ths_rightDigit->mesh, cam, w, h, transparency ) ;
-
-#ifdef CLOCK3D_SECOND100THS_RADIAL
-  MeshR3_draw( gCtx, this->second100ths_radial->mesh, cam, w, h, transparency ) ;
-#endif
+  MeshR3_draw( gCtx, this->second100ths_radial    ->mesh, cam, w, h, transparency ) ;
 }

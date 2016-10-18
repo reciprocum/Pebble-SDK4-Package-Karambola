@@ -3,7 +3,7 @@
    File   : Clock3D.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 18h40 August 29 2016
+   Last revision: 18h40 October 17 2016
 */
 
 #pragma once
@@ -20,12 +20,11 @@
 #define  CLOCK3D_DISPLAY_TYPE_DEFAULT  DIGIT2D_CURVYBONESKIN
 
 // Comment next line if you need/want to omit the radial dial on the second100ths face (~3KB RAM savings).
-#define  CLOCK3D_SECOND100THS_RADIAL
-#define  CLOCK3D_SECOND100THS_DISPLAYTYPE_MAJOR  DIGIT2D_7SEGSKINBONE
-#define  CLOCK3D_SECOND100THS_DISPLAYTYPE        DIGIT2D_7SEGSKINBONE
+//#define  CLOCK3D_SECOND100THS_RADIAL
 
 #define  CUBE_SIZE            1.0f
 #define  CUBE_HALF            (0.50f * CUBE_SIZE)
+
 #define  RADIAL_INNER_RADIUS  (0.80f * CUBE_HALF)
 #define  RADIAL_OUTER_RADIUS  (0.97f * CUBE_HALF)
 
@@ -68,10 +67,7 @@ typedef struct
   int8_t        second100ths ;
   Digit3D      *second100ths_leftDigit ;
   Digit3D      *second100ths_rightDigit ;
-
-#ifdef CLOCK3D_SECOND100THS_RADIAL
   RadialDial3D *second100ths_radial ;
-#endif
 
   // Animation related.
   int    days_leftDigit_animStep ;
@@ -79,6 +75,7 @@ typedef struct
   int    hours_leftDigit_animStep ;
   int    hours_rightDigit_animStep ;
   int    hours_radial_animStep ;
+
   int    minutes_leftDigit_animStep ;
   int    minutes_rightDigit_animStep ;
   int    minutes_radial_animStep ;

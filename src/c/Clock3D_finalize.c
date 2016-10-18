@@ -3,7 +3,7 @@
    File   : Clock3D_finalize.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 15h10 August 25 2016
+   Last revision: 15h10 October 17 2016
 */
 
 #include "Clock3D.h"
@@ -24,22 +24,20 @@ Clock3D_finalize
   free( Digit3D_free( this->hours_leftDigitA    ) )     ; this->hours_leftDigitA        = NULL ;
   free( Digit3D_free( this->hours_rightDigitB   ) )     ; this->hours_rightDigitB       = NULL ;
   free( Digit3D_free( this->hours_rightDigitA   ) )     ; this->hours_rightDigitA       = NULL ;
-  free( RadialDial3D_free( this->hours_radial   ) )     ; this->hours_radial            = NULL ;
 
   free( Digit3D_free( this->minutes_leftDigitB  ) )     ; this->minutes_leftDigitB      = NULL ;
   free( Digit3D_free( this->minutes_leftDigitA  ) )     ; this->minutes_leftDigitA      = NULL ;
   free( Digit3D_free( this->minutes_rightDigitB ) )     ; this->minutes_rightDigitB     = NULL ;
   free( Digit3D_free( this->minutes_rightDigitA ) )     ; this->minutes_rightDigitA     = NULL ;
-  free( RadialDial3D_free( this->minutes_radial ) )     ; this->minutes_radial          = NULL ;
 
   free( Digit3D_free( this->seconds_leftDigit   ) )     ; this->seconds_leftDigit       = NULL ;
   free( Digit3D_free( this->seconds_rightDigit  ) )     ; this->seconds_rightDigit      = NULL ;
-  free( RadialDial3D_free( this->seconds_radial ) )     ; this->seconds_radial          = NULL ;
 
   free( Digit3D_free( this->second100ths_leftDigit  ) ) ; this->second100ths_leftDigit  = NULL ;
   free( Digit3D_free( this->second100ths_rightDigit ) ) ; this->second100ths_rightDigit = NULL ;
 
-#ifdef CLOCK3D_SECOND100THS_RADIAL
-  free( RadialDial3D_free( this->second100ths_radial ) ) ; this->second100ths_radial     = NULL ;
-#endif
+  free( RadialDial3D_free( this->hours_radial   ) )      ; this->hours_radial           = NULL ;
+  free( RadialDial3D_free( this->minutes_radial ) )      ; this->minutes_radial         = NULL ;
+  free( RadialDial3D_free( this->seconds_radial ) )      ; this->seconds_radial         = NULL ;
+  free( RadialDial3D_free( this->second100ths_radial ) ) ; this->second100ths_radial    = NULL ;
 }

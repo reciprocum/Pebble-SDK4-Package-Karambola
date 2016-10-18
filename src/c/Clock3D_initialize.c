@@ -3,7 +3,7 @@
    File   : Clock3D_initialize.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 19h50 August 29 2016
+   Last revision: 19h50 October 17 2016
 */
 
 #include "Clock3D.h"
@@ -65,12 +65,9 @@ Clock3D_initialize
   this->seconds_rightDigit      = Digit3D_new( CLOCK3D_DISPLAY_TYPE_MAJOR ) ;
   this->seconds_radial          = RadialDial3D_new( RADIAL_DIAL_TYPE_60 ) ;
 
-  this->second100ths_leftDigit  = Digit3D_new( CLOCK3D_SECOND100THS_DISPLAYTYPE_MAJOR ) ;
-  this->second100ths_rightDigit = Digit3D_new( CLOCK3D_SECOND100THS_DISPLAYTYPE_MAJOR ) ;
-
-#ifdef CLOCK3D_SECOND100THS_RADIAL
+  this->second100ths_leftDigit  = Digit3D_new( DIGIT2D_7SEGSKINBONE ) ;
+  this->second100ths_rightDigit = Digit3D_new( DIGIT2D_7SEGSKINBONE ) ;
   this->second100ths_radial     = RadialDial3D_new( RADIAL_DIAL_TYPE_100 ) ;
-#endif
 
   // ***  Configure stroke properties  ***
 
@@ -85,11 +82,9 @@ Clock3D_initialize
   this->hours_leftDigitA ->mesh->strokeColor =
   this->hours_leftDigitB ->mesh->strokeColor =
   this->hours_rightDigitA->mesh->strokeColor =
-  this->hours_rightDigitB->mesh->strokeColor =
-  this->hours_radial     ->mesh->strokeColor = GColorGreen
-  ;
+  this->hours_rightDigitB->mesh->strokeColor = GColorGreen ;
+  this->hours_radial->mesh->strokeColor = this->hours_rightDigitB->mesh->strokeColor ;
   this->hours_radial->mesh->edgeAlternateMask_L2R = RADIAL_DIAL_24_EVERY6ALTERNATEEDGEMASK_L2R ;
-
   this->hours_radial->mesh->strokeWidthAlternate = 2 ;
   this->hours_radial->mesh->strokeColorAlternate = this->hours_radial->mesh->strokeColor ;
 
@@ -97,22 +92,17 @@ Clock3D_initialize
   this->minutes_leftDigitA ->mesh->strokeColor =
   this->minutes_leftDigitB ->mesh->strokeColor =
   this->minutes_rightDigitA->mesh->strokeColor =
-  this->minutes_rightDigitB->mesh->strokeColor =
-  this->minutes_radial     ->mesh->strokeColor = GColorRed
-  ;
+  this->minutes_rightDigitB->mesh->strokeColor = GColorRed ;
+  this->minutes_radial->mesh->strokeColor = this->minutes_rightDigitB->mesh->strokeColor ;
   this->minutes_radial->mesh->edgeAlternateMask_L2R = RADIAL_DIAL_60_EVERY5ALTERNATEEDGEMASK_L2R ;
-
   this->minutes_radial->mesh->strokeWidthAlternate = 2 ;
   this->minutes_radial->mesh->strokeColorAlternate = this->minutes_radial->mesh->strokeColor ;
 
   // seconds
   this->seconds_leftDigit ->mesh->strokeColor =
-  this->seconds_rightDigit->mesh->strokeColor =
-  this->seconds_radial    ->mesh->strokeColor = GColorVividCerulean
-  ;
-
+  this->seconds_rightDigit->mesh->strokeColor = GColorVividCerulean ;
+  this->seconds_radial->mesh->strokeColor = this->seconds_rightDigit->mesh->strokeColor ;
   this->seconds_radial->mesh->edgeAlternateMask_L2R = RADIAL_DIAL_60_EVERY5ALTERNATEEDGEMASK_L2R ;
-
   this->seconds_radial->mesh->strokeWidthAlternate = 2 ;
   this->seconds_radial->mesh->strokeColorAlternate = this->seconds_radial->mesh->strokeColor ;
 
@@ -122,12 +112,8 @@ Clock3D_initialize
   this->second100ths_rightDigit->mesh->strokeColor          = GColorRichBrilliantLavender ;   // Right digit skin color.
   this->second100ths_leftDigit ->mesh->strokeColorAlternate = GColorRed ;
 
-#ifdef CLOCK3D_SECOND100THS_RADIAL
   this->second100ths_radial->mesh->strokeColor = this->second100ths_rightDigit->mesh->strokeColor ;
   this->second100ths_radial->mesh->edgeAlternateMask_L2R  = RADIAL_DIAL_100_EVERY10ALTERNATEEDGEMASK_L2R ;
   this->second100ths_radial->mesh->strokeWidthAlternate = 2 ;
-
   this->second100ths_radial->mesh->strokeColorAlternate = this->second100ths_leftDigit->mesh->strokeColorAlternate ;
-
-#endif
 }

@@ -3,7 +3,7 @@
    File   : Clock3D_isAnimated.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 17h10 August 25 2016
+   Last revision: 17h10 October 17 2016
 */
 
 #include "Clock3D.h"
@@ -17,9 +17,9 @@ Clock3D_isAnimated
       || this->days_rightDigit_animStep > 0
       || this->hours_leftDigit_animStep > 0
       || this->hours_rightDigit_animStep > 0
-      || this->hours_radial_animStep > 0
       || this->minutes_leftDigit_animStep > 0
       || this->minutes_rightDigit_animStep > 0
+      || this->hours_radial_animStep > 0
       || this->minutes_radial_animStep > 0
        ;
 }

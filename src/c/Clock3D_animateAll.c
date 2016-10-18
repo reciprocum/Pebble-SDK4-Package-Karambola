@@ -3,7 +3,7 @@
    File   : Clock3D_animateAll.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 17h10 August 25 2016
+   Last revision: 17h10 October 17 2016
 */
 
 #include "Clock3D.h"
