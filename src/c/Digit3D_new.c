@@ -3,7 +3,7 @@
    File   : Digit3D_new.c
    Author : Afonso Santos, Portugal
 
-   Last revision: 18h55 August 29 2016
+   Last revision: 18h55 October 20 2016
 */
 
 #include "Digit3D.h"
@@ -66,7 +66,10 @@ Digit3D_new
   }
 
   if (this->mesh == NULL)
-    return Digit3D_free( this ) ;
+  {
+    Digit3D_free( this ) ;
+    return NULL ;
+  }
 
   Digit3D_setNull( this ) ;
 

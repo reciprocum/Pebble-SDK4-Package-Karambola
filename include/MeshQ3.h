@@ -3,7 +3,7 @@
    File   : MeshQ3.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h25 August 30 2016
+   Last revision: 12h25 October 20 2016
 */
 
 #pragma once
@@ -57,8 +57,8 @@ typedef struct
 } MeshQ3 ;
 
 
-MeshQ3*  MeshQ3_free( MeshQ3 *this ) ;
 MeshQ3*  MeshQ3_new( const uint16_t verticesNum, const uint16_t edgesNum, const uint16_t facesNum ) ;
+void     MeshQ3_free( MeshQ3 *this ) ;
 
 // Calculate the normal vector from the first 2 edges of each face.
 void  MeshQ3_calculateFaceNormals( MeshQ3 *this ) ;

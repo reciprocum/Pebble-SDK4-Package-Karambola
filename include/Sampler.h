@@ -3,7 +3,7 @@
    File   : Sampler.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 11h55 August 28 2016
+   Last revision: October 28 2016
 */
 
 #pragma once
@@ -21,9 +21,9 @@ typedef struct
 
 
 Sampler*  Sampler_new( const uint16_t capacity ) ;
-Sampler*  Sampler_free( Sampler *this ) ;
 void      Sampler_init( Sampler *this ) ;
 void      Sampler_push( Sampler *this, const int16_t sample ) ;
+void      Sampler_free( Sampler *this ) ;
 
 void
 Sampler_plot

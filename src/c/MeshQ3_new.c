@@ -20,9 +20,7 @@ MeshQ3_new
   MeshQ3 *mesh = malloc(sizeof(MeshQ3)) ;
   
   if (mesh == NULL)
-  {
     return NULL ;
-  }
 
   if (verticesNum > 0)
   {
@@ -31,7 +29,8 @@ MeshQ3_new
     if (mesh->vertices == NULL)
     {
       LOGE( "MeshQ3_new:: mesh->vertices == NULL" ) ;
-      return MeshQ3_free( mesh ) ;
+      MeshQ3_free( mesh ) ;
+      return NULL ;
     }
   }
 
@@ -42,7 +41,8 @@ MeshQ3_new
     if (mesh->edgesState == NULL)
     {
       LOGE( "MeshQ3_new:: mesh->edgesState == NULL" ) ;
-      return MeshQ3_free( mesh ) ;
+      MeshQ3_free( mesh ) ;
+      return NULL ;
     }
   }
 
@@ -54,7 +54,8 @@ MeshQ3_new
     if (mesh->normal_worldCoord == NULL)
     {
       LOGE( "MeshQ3_new:: mesh->normal_worldCoord == NULL" ) ;
-      return MeshQ3_free( mesh ) ;
+      MeshQ3_free( mesh ) ;
+      return NULL ;
     }
   }
 
@@ -65,7 +66,8 @@ MeshQ3_new
     if (mesh->faces == NULL)
     {
       LOGE( "MeshQ3_new:: mesh->faces == NULL" ) ;
-      return MeshQ3_free( mesh ) ;
+      MeshQ3_free( mesh ) ;
+      return NULL ;
     }
   }
 

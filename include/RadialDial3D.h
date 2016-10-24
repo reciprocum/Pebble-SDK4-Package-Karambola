@@ -3,7 +3,7 @@
    File   : RadialDial3D.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 10h45 August 30 2016
+   Last revision: 10h45 October 20 2016
 */
 
 #pragma once
@@ -20,7 +20,7 @@ typedef struct
 
 
 RadialDial3D*  RadialDial3D_new ( RadialDialType type ) ;
-RadialDial3D*  RadialDial3D_free( RadialDial3D *this ) ;
+void           RadialDial3D_free( RadialDial3D *this ) ;
 
 void
 RadialDial3D_config

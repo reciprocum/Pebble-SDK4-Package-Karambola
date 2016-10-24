@@ -3,7 +3,7 @@
    File   : MeshR3.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h05 August 30 2016
+   Last revision: 12h05 October 20 2016
 */
 
 #pragma once
@@ -57,8 +57,8 @@ typedef struct
 } MeshR3 ;
 
 
-MeshR3*  MeshR3_free( MeshR3 *this ) ;
 MeshR3*  MeshR3_new( const uint16_t verticesNum, const uint16_t edgesNum, const uint16_t facesNum ) ;
+void     MeshR3_free( MeshR3 *this ) ;
 
 // Calculate the normal vector from the first 2 edges of each face.
 void  MeshR3_calculateFaceNormals( MeshR3 *this ) ;

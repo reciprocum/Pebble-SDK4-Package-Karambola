@@ -22,21 +22,30 @@ RadialDial3D_new
   {
     case RADIAL_DIAL_TYPE_24:
       if ((this->mesh = MeshR3_new( 48, RADIAL_DIAL_24_EDGEINFO.edgesNum, 0 )) == NULL)
-        return RadialDial3D_free( this ) ;
+      {
+        RadialDial3D_free( this ) ;
+        return NULL ;
+      }
 
       this->mesh->edgeInfo = &RADIAL_DIAL_24_EDGEINFO ;
       break ;
 
     case RADIAL_DIAL_TYPE_60:
       if ((this->mesh = MeshR3_new( 120, RADIAL_DIAL_60_EDGEINFO.edgesNum, 0 )) == NULL)
-        return RadialDial3D_free( this ) ;
+      {
+        RadialDial3D_free( this ) ;
+        return NULL ;
+      }
 
       this->mesh->edgeInfo = &RADIAL_DIAL_60_EDGEINFO ;
       break ;
 
     case RADIAL_DIAL_TYPE_100:
       if ((this->mesh = MeshR3_new( 200, RADIAL_DIAL_100_EDGEINFO.edgesNum, 0 )) == NULL)
-        return RadialDial3D_free( this ) ;
+      {
+        RadialDial3D_free( this ) ;
+        return NULL ;
+      }
 
       this->mesh->edgeInfo = &RADIAL_DIAL_100_EDGEINFO ;
       break ;

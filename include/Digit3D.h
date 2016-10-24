@@ -3,7 +3,7 @@
    File   : Digit3D.h
    Author : Afonso Santos, Portugal
 
-   Last revision: 12h15 August 30 2016
+   Last revision: October 20 2016
 */
 
 #pragma once
@@ -19,10 +19,10 @@ typedef struct
 } Digit3D ;
 
 
-Digit3D*  Digit3D_free            ( Digit3D *this ) ;
-void      Digit3D_setNull         ( Digit3D *this ) ;
-Digit3D*  Digit3D_new             ( Digit2D_Type typeMax ) ;
-void      Digit3D_setValue        ( Digit3D *this, const uint8_t value ) ;
+Digit3D*  Digit3D_new     ( Digit2D_Type typeMax ) ;
+void      Digit3D_setNull ( Digit3D *this ) ;
+void      Digit3D_setValue( Digit3D *this, const uint8_t value ) ;
+void      Digit3D_free    ( Digit3D *this ) ;
 
 void
 Digit3D_config

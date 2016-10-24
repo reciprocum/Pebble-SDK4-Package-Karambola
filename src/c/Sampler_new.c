@@ -28,7 +28,8 @@ Sampler_new
   if (this->samples == NULL)
   {
     LOGE( "Sampler_new:: this->samples = malloc( ) returned NULL" ) ;
-    return Sampler_free( this ) ;
+    Sampler_free( this ) ;
+    return NULL ;
   }
 
   Sampler_init( this ) ;

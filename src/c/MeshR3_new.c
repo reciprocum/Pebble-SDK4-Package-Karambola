@@ -31,7 +31,8 @@ MeshR3_new
     if (mesh->vertices == NULL)
     {
       LOGE( "MeshR3_new:: mesh->vertices == NULL" ) ;
-      return MeshR3_free( mesh ) ;
+      MeshR3_free( mesh ) ;
+      return NULL ;
     }
   }
 
@@ -42,7 +43,8 @@ MeshR3_new
     if (mesh->edgesState == NULL)
     {
       LOGE( "MeshR3_new:: mesh->edgesState == NULL" ) ;
-      return MeshR3_free( mesh ) ;
+      MeshR3_free( mesh ) ;
+      return NULL ;
     }
   }
 
@@ -54,7 +56,8 @@ MeshR3_new
     if (mesh->normal_worldCoord == NULL)
     {
       LOGE( "MeshR3_new:: mesh->normal_worldCoord == NULL" ) ;
-      return MeshR3_free( mesh ) ;
+      MeshR3_free( mesh ) ;
+      return NULL ;
     }
   }
 
@@ -65,7 +68,8 @@ MeshR3_new
     if (mesh->faces == NULL)
     {
       LOGE( "MeshR3_new:: mesh->faces == NULL" ) ;
-      return MeshR3_free( mesh ) ;
+      MeshR3_free( mesh ) ;
+      return NULL ;
     }
   }
 
